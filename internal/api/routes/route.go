@@ -2,7 +2,16 @@ package routes
 
 import "github.com/gofiber/fiber/v2"
 
-func Routes() *fiber.App {
+type (
+	Routes interface {
+		NewRouter() *fiber.App
+	}
+
+	Route struct {
+	}
+)
+
+func (route *Route) NewRouter() *fiber.App {
 	app := fiber.New()
 	app.Get("/about", func(c *fiber.Ctx) error {
 		return c.SendString("ini halaman about")
