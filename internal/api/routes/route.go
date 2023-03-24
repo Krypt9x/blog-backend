@@ -7,11 +7,11 @@ type (
 		NewRouter() *fiber.App
 	}
 
-	Route struct {
+	MainRoute struct {
 	}
 )
 
-func (route *Route) NewRouter() *fiber.App {
+func (route *MainRoute) NewRouter() *fiber.App {
 	app := fiber.New()
 	app.Get("/about", func(c *fiber.Ctx) error {
 		return c.SendString("ini halaman about")
