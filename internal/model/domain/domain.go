@@ -4,8 +4,8 @@ type (
 	Amount struct {
 		No             int
 		Id             string
-		AmountComments int64
-		AmountViews    int64
+		AmountComments uint64
+		AmountViews    uint64
 	}
 
 	Comments struct {

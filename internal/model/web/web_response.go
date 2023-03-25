@@ -2,8 +2,8 @@ package web
 
 type (
 	AmountResponse struct {
-		AmountComment int64
-		AmountView    int64
+		AmountComment uint64
+		AmountView    uint64
 	}
 
 	CommentResponse struct {
@@ -26,6 +26,7 @@ type (
 	}
 
 	MainModelResponse struct {
+		Id             string
 		Title          string
 		Username       string
 		Date           string
