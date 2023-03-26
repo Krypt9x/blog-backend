@@ -3,16 +3,16 @@ package web
 type (
 	CommentRequest struct {
 		Username    string `json:"username"`
-		Comment     string `json:"comment" validate:"required"`
+		Comment     string `json:"comment"`
 		DateComment string `json:"date_comment"`
 	}
 
 	MainModelRequest struct {
-		Title          string `json:"title" validate:"required"`
-		Username       string `json:"username" validate:"required"`
+		Title          string `json:"title"`
+		Username       string `json:"username"`
 		Date           string `json:"date"`
 		TrailerContent string `json:"trailer_content"`
-		Content        string `json:"content" validate:"required"`
+		Content        string `json:"content"`
 	}
 
 	UserRequest struct {
