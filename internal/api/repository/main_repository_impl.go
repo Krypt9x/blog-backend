@@ -23,7 +23,7 @@ func NewMainRepository() MainRepository {
 func (repository *MainRepositoryImpl) Create(ctx context.Context, tx *sql.Tx, data domain.MainDomain) (web.MainModelResponse, error) {
 	query := "INSERT INTO main_table(id_post, title, username, date, trailer_content, content) VALUES ($1, $2, $3, $4, $5, $6)"
 	timeNow := time.Now()
-	timeNowArr := []string{strconv.Itoa(timeNow.Hour()), strconv.Itoa(timeNow.Minute()), " at ", strconv.Itoa(timeNow.Day()), strconv.Itoa(int(timeNow.Month())), strconv.Itoa(timeNow.Year())}
+	timeNowArr := []string{strconv.Itoa(timeNow.Hour()), strconv.Itoa(timeNow.Minute()), "at", strconv.Itoa(timeNow.Day()), strconv.Itoa(int(timeNow.Month())), strconv.Itoa(timeNow.Year())}
 	contentDate := strings.Join(timeNowArr, "-")
 
 	_, err := tx.ExecContext(ctx, query, data.Id, data.Title, data.Username, contentDate, data.TrailerContent, data.Content)
