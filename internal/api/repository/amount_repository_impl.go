@@ -64,7 +64,7 @@ func (repository *AmountRepositoryImpl) UpdateAmountCommentsById(ctx context.Con
 	}
 	var UpdatedAmountCommments uint64
 	if rows.Next() {
-		err := rows.Scan(UpdatedAmountCommments)
+		err := rows.Scan(&UpdatedAmountCommments)
 		if err != nil {
 			return 0, err
 		}
@@ -82,7 +82,7 @@ func (repository *AmountRepositoryImpl) UpdateAmountViewsById(ctx context.Contex
 	}
 	var UpdatedAmountViews uint64
 	if rows.Next() {
-		err := rows.Scan(UpdatedAmountViews)
+		err := rows.Scan(&UpdatedAmountViews)
 		if err != nil {
 			return 0, err
 		}

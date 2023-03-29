@@ -20,8 +20,8 @@ type (
 		Date           string
 		TrailerContent string
 		Content        string
-		AmountComments int64
-		AmountViews    int64
+		AmountComments uint64
+		AmountViews    uint64
 		Comments       []CommentResponse
 	}
 
