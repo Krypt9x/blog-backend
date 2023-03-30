@@ -19,6 +19,9 @@ type (
 func (Configdb *DatabaseConfigPostgres) SetupDB(dataSource string) *sql.DB {
 	db, err := sql.Open("postgres", dataSource)
 	if err != nil {
+		log.Panicln(err)
+	}
+	if err := db.Ping(); err != nil {
 		log.Panicln("database failed to connect")
 	}
 	log.Println("database connected")
