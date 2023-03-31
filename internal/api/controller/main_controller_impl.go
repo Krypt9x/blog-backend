@@ -77,7 +77,7 @@ func (controller *MainControllerImpl) GetById(ctx *fiber.Ctx) error {
 	go controller.ConcurrentService.CommentService.GetCommentByIdPost(ctx, commentDataCh, &waitGrup)
 	go controller.ConcurrentService.AmountService.GetAmountCommentById(ctx, amountCommentsDataCh, &waitGrup)
 
-	fullData := helper.ToAllJoinTable(data, amountCommentsDataCh, amountViewsDataCh, commentDataCh)
+	fullData := helper.ToAllJoinTableConcurrent(data, amountCommentsDataCh, amountViewsDataCh, commentDataCh)
 
 	waitGrup.Wait()
 	return helper.SendJSONResponse(ctx, &helper.HttpResponseData{

@@ -4,8 +4,8 @@ import (
 	"github.com/Krypt9x/blog-backend/internal/model/web"
 )
 
-// must be call waitgrup.wait to avoid deadlock goroutine
-func ToAllJoinTable(data web.MainModelResponse, amountCommentsDataCh chan uint64, amountViewsDataCh chan uint64, commentDataCh chan []web.CommentResponse) web.AllTableJoinResponse {
+// after call this function, must be call [sync.WaitGrup.Wait()] to avoid deadlock goroutine
+func ToAllJoinTableConcurrent(data web.MainModelResponse, amountCommentsDataCh chan uint64, amountViewsDataCh chan uint64, commentDataCh chan []web.CommentResponse) web.AllTableJoinResponse {
 	return web.AllTableJoinResponse{
 		Id:             data.Id,
 		Title:          data.Title,
