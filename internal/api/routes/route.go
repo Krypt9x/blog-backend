@@ -23,9 +23,6 @@ func InitRouter(controller ControllerObj) *fiber.App {
 		JSONEncoder: json.Marshal,
 		JSONDecoder: json.Unmarshal,
 	})
-	app.Get("/about", func(c *fiber.Ctx) error {
-		return c.SendString("ini halaman about")
-	})
 	app.Post("/blog/register", controller.UserController.Register)
 	app.Post("/blog/login", controller.UserController.Login)
 	app.Post("/blog/post", controller.MainController.Create)
