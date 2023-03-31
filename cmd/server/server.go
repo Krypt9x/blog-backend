@@ -5,6 +5,7 @@ import (
 	"github.com/Krypt9x/blog-backend/internal/api/repository"
 	"github.com/Krypt9x/blog-backend/internal/api/routes"
 	services "github.com/Krypt9x/blog-backend/internal/api/service"
+	concurrentservice "github.com/Krypt9x/blog-backend/internal/api/service/concurrent_service"
 	"github.com/Krypt9x/blog-backend/internal/database"
 	"github.com/gofiber/fiber/v2/middleware/pprof"
 )
@@ -29,7 +30,13 @@ func RunServer() {
 
 	mainRepo := repository.NewMainRepository()
 	mainService := services.NewMainService(db, mainRepo)
-	mainController := controller.NewMainController(mainService, commentService, amountService)
+
+	amountConcurrentService := concurrentservice.NewAmountService(amountService)
+	commentConcurrentService := concurrentservice.NewCommentService(commentService)
+
+	concurrentService := concurrentservice.NewConcurrentService(amountConcurrentService, commentConcurrentService)
+
+	mainController := controller.NewMainController(mainService, *concurrentService)
 
 	objController := routes.ControllerObj{
 		UserController: userController,
